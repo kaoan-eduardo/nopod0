@@ -75,7 +75,7 @@ export default function Login() {
       </View>
 
       {/* Botão Cadastrar */}
-      <View style={styles.containerButton}>
+      <View style={styles.containerButtonRegister}>
         <Pressable
           style={styles.loginPressable}
           onPress={() => router.push("./register")}

@@ -6,7 +6,6 @@ import { styles } from "../styles/homeStyles";
 import { colors } from "../styles/colors";
 
 export default function Home() {
-  // Criação do estado para controlar os dias selecionados
   const [selectedDays, setSelectedDays] = useState({
     seg: false,
     ter: false,
@@ -17,15 +16,13 @@ export default function Home() {
     dom: false,
   });
 
-  // Função para alternar o estado de um dia
   const toggleDaySelection = (day: keyof typeof selectedDays) => {
     setSelectedDays((prevState) => ({
       ...prevState,
-      [day]: !prevState[day], // Alterna entre true/false
+      [day]: !prevState[day],
     }));
   };
 
-  // Função para renderizar os ícones dos dias
   const renderDayIcon = (day: keyof typeof selectedDays) => {
     const isSelected = selectedDays[day];
     return (
@@ -36,10 +33,10 @@ export default function Home() {
           style={[
             styles.weekIcons,
             {
-              backgroundColor: isSelected ? "white" : "transparent", // Fundo branco se selecionado
-              borderRadius: 5, // Para dar bordas arredondadas no fundo branco
-              color: isSelected ? "green" : "black", // Verde quando selecionado
-              textAlign: "center", // Centralizar o ícone
+              backgroundColor: isSelected ? "white" : "transparent",
+              borderRadius: 5,
+              color: isSelected ? "green" : "black",
+              textAlign: "center",
             },
           ]}
         />
@@ -47,7 +44,6 @@ export default function Home() {
     );
   };
 
-  // Contar os dias selecionados
   const selectedDaysCount = Object.values(selectedDays).filter(Boolean).length;
 
   return (
@@ -71,19 +67,21 @@ export default function Home() {
       <View style={styles.weekControlContainer}>
         <Text style={styles.weekText}>Controle da semana</Text>
         <Text style={styles.weekTextTwo}>Dias que você deixou de fumar</Text>
+
+        {/* Dias da semana */}
         <View style={styles.calendarDays}>
           {["seg", "ter", "qua", "qui", "sex", "sab", "dom"].map((day) => (
             <Text key={day} style={styles.calendarDaysText}>
-              {day.charAt(0).toUpperCase() + day.slice(1)}{" "}
-              {/* Capitaliza o primeiro caractere */}
+              {day.charAt(0).toUpperCase() + day.slice(1)}
             </Text>
           ))}
         </View>
+
+        {/* Ícones dos dias */}
         <View style={styles.calendar}>
           {["seg", "ter", "qua", "qui", "sex", "sab", "dom"].map((day) => (
             <View key={day} style={{ flex: 1, alignItems: "center" }}>
-              {renderDayIcon(day as keyof typeof selectedDays)}{" "}
-              {/* Chama a função para renderizar o ícone de cada dia */}
+              {renderDayIcon(day as keyof typeof selectedDays)}
             </View>
           ))}
         </View>
@@ -91,8 +89,9 @@ export default function Home() {
 
       <View style={styles.noSmokeContainer}>
         <Text style={styles.noSmokeText}>Vezes que deixou de fumar</Text>
-        <Text>{selectedDaysCount}</Text>{" "}
-        {/* Mostra a quantidade de dias selecionados */}
+        <Text style={{ fontSize: 22, color: "#fff", fontWeight: "bold" }}>
+          {selectedDaysCount}
+        </Text>
         <View style={styles.imageContainer}>
           <Image
             source={require("../assets/images/NoSmokeLogo.png")}

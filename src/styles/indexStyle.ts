@@ -46,7 +46,14 @@ export const styles = StyleSheet.create({
   },
 
   containerButton: {
-    marginTop: 210,
+    marginTop: 100,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  containerButtonRegister: {
+    marginTop: 10,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",

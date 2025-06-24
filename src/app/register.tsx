@@ -1,34 +1,32 @@
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
-import { View, Text, TextInput, Alert, Image, Pressable } from "react-native";
+import { View, Text, TextInput, Alert, Pressable, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "../styles/indexStyle";
 import { colors } from "../styles/colors";
 
-export default function Login() {
+export default function Register() {
   const router = useRouter();
 
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const dados = await AsyncStorage.getItem("usuario");
-      if (dados !== null) {
-        const usuario = JSON.parse(dados);
+  const handleRegister = async () => {
+    if (!nome || !email || !senha) {
+      Alert.alert("Preencha todos os campos");
+      return;
+    }
 
-        if (email === usuario.email && senha === usuario.senha) {
-          Alert.alert(`Bem-vindo, ${usuario.nome}!`);
-          router.push("./home");
-        } else {
-          Alert.alert("Email ou senha incorretos");
-        }
-      } else {
-        Alert.alert("Nenhum usuário cadastrado");
-      }
+    const usuario = { nome, email, senha };
+
+    try {
+      await AsyncStorage.setItem("usuario", JSON.stringify(usuario));
+      Alert.alert("Cadastro realizado com sucesso!");
+      router.push("./login");
     } catch (error) {
-      Alert.alert("Erro ao acessar os dados");
+      Alert.alert("Erro ao salvar os dados");
     }
   };
 
@@ -43,10 +41,19 @@ export default function Login() {
         style={styles.appLogo}
       />
 
-      {/* Texto de login */}
-      <Text style={styles.loginText}>Login</Text>
+      {/* Título */}
+      <Text style={styles.loginText}>Cadastro</Text>
 
-      {/* Campo de e-mail */}
+      {/* Nome */}
+      <Text style={styles.emailText}>Nome</Text>
+      <TextInput
+        placeholder="Digite seu nome"
+        style={styles.emailInput}
+        value={nome}
+        onChangeText={setNome}
+      />
+
+      {/* Email */}
       <Text style={styles.emailText}>E-mail</Text>
       <TextInput
         placeholder="seuemail@exemplo.com"
@@ -57,7 +64,7 @@ export default function Login() {
         autoCapitalize="none"
       />
 
-      {/* Campo de senha */}
+      {/* Senha */}
       <Text style={styles.passwordText}>Senha</Text>
       <TextInput
         placeholder="Digite sua senha"
@@ -67,19 +74,9 @@ export default function Login() {
         onChangeText={setSenha}
       />
 
-      {/* Botão Entrar */}
-      <View style={styles.containerButton}>
-        <Pressable style={styles.loginPressable} onPress={handleLogin}>
-          <Text style={styles.loginButtonText}>Entrar</Text>
-        </Pressable>
-      </View>
-
       {/* Botão Cadastrar */}
       <View style={styles.containerButton}>
-        <Pressable
-          style={styles.loginPressable}
-          onPress={() => router.push("./register")}
-        >
+        <Pressable style={styles.loginPressable} onPress={handleRegister}>
           <Text style={styles.loginButtonText}>Cadastrar</Text>
         </Pressable>
       </View>

@@ -1,9 +1,11 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useState } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../styles/homeStyles";
 import { colors } from "../styles/colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
 
 export default function Home() {
   const [selectedDays, setSelectedDays] = useState({
@@ -45,6 +47,23 @@ export default function Home() {
   };
 
   const selectedDaysCount = Object.values(selectedDays).filter(Boolean).length;
+  const [nomeUsuario, setNomeUsuario] = useState("");
+
+  // Carregar o nome do AsyncStorage quando o componente montar
+  useEffect(() => {
+    async function carregarNome() {
+      try {
+        const usuarioJson = await AsyncStorage.getItem("usuario");
+        if (usuarioJson) {
+          const usuario = JSON.parse(usuarioJson);
+          setNomeUsuario(usuario.nome || "");
+        }
+      } catch (error) {
+        console.log("Erro ao carregar usuário", error);
+      }
+    }
+    carregarNome();
+  }, []);
 
   return (
     <LinearGradient
@@ -62,6 +81,10 @@ export default function Home() {
           source={require("../assets/images/userLogo.png")}
           style={styles.userLogo}
         />
+      </View>
+
+      <View style={styles.userTextContainer}>
+        <Text style={styles.userText}>Bem-vindo {nomeUsuario}</Text>
       </View>
 
       <View style={styles.weekControlContainer}>
@@ -98,6 +121,12 @@ export default function Home() {
             style={styles.noSmokeImage}
           />
         </View>
+      </View>
+
+      <View style={styles.smokeButtonContainer}>
+        <Pressable onPress={() => router.push("./breathingCircle")}>
+          <Text style={styles.smokeButtonText}>Quero Fumar!</Text>
+        </Pressable>
       </View>
     </LinearGradient>
   );

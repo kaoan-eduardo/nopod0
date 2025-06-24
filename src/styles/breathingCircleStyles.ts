@@ -14,18 +14,18 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.button[100],
   },
   goBackButton: {
-    position: "absolute", // Faz o botão ficar fixo
-    top: 20, // Ajuste o topo conforme necessário
-    left: 10, // Ajuste a distância da esquerda conforme necessário
-    flexDirection: "row", // Alinha o ícone e o texto horizontalmente
-    alignItems: "center", // Alinha verticalmente
+    position: "absolute",
+    top: 45,
+    left: 8,
+    flexDirection: "row",
+    alignItems: "center",
   },
   goBackPressable: {
-    flexDirection: "row", // Alinha ícone e texto dentro do Pressable
-    alignItems: "center", // Centraliza verticalmente
-    gap: 3, // Espaço entre ícone e texto
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 1,
   },
   pressableText: {
-    color: colors.white[100], // Cor do texto
+    color: colors.white[100],
   },
 });

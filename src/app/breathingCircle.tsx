@@ -36,15 +36,25 @@ export default function BreathingCircle() {
     >
       <View style={styles.goBackButton}>
         <Pressable
-          onPress={() => router.push("./home")}
+          onPress={() => router.push("./greetings")}
           style={styles.goBackPressable}
         >
           <Ionicons name="arrow-back" size={20} color="white" />
           <Text style={styles.pressableText}>Voltar</Text>
         </Pressable>
       </View>
-      <Text style={{ color: "#fff", marginBottom: 150 }}>
+      <Text style={{ color: "#fff", textAlign: "center", fontSize: 16 }}>
         Utilize a figura abaixo para controlar sua respiração
+      </Text>
+      <Text
+        style={{
+          color: "#fff",
+          textAlign: "center",
+          marginBottom: 150,
+          fontSize: 16,
+        }}
+      >
+        (Fique o tempo que precisar)
       </Text>
       <Animated.View
         style={[

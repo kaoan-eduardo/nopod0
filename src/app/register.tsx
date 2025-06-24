@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
@@ -24,6 +25,7 @@ export default function Register() {
     try {
       await AsyncStorage.setItem("usuario", JSON.stringify(usuario));
       Alert.alert("Cadastro realizado com sucesso!");
+      router.push("./index");
     } catch (error) {
       Alert.alert("Erro ao salvar os dados");
     }
@@ -77,6 +79,15 @@ export default function Register() {
       <View style={styles.containerButton}>
         <Pressable style={styles.loginPressable} onPress={handleRegister}>
           <Text style={styles.loginButtonText}>Cadastrar</Text>
+        </Pressable>
+      </View>
+
+      <View>
+        <Pressable
+          style={styles.loginPressable}
+          onPress={() => router.push("./")}
+        >
+          <Text style={styles.loginButtonText}>Voltar</Text>
         </Pressable>
       </View>
     </LinearGradient>

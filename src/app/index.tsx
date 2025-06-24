@@ -19,7 +19,6 @@ export default function Login() {
         const usuario = JSON.parse(dados);
 
         if (email === usuario.email && senha === usuario.senha) {
-          Alert.alert(`Bem-vindo, ${usuario.nome}!`);
           router.push("./home");
         } else {
           Alert.alert("Email ou senha incorretos");
@@ -27,6 +26,7 @@ export default function Login() {
       } else {
         Alert.alert("Nenhum usuário cadastrado");
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       Alert.alert("Erro ao acessar os dados");
     }

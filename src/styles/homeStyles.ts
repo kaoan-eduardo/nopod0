@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     paddingHorizontal: 20,
+    gap: 10,
   },
 
   informations: {
@@ -27,11 +28,18 @@ export const styles = StyleSheet.create({
     resizeMode: "contain",
   },
 
+  userTextContainer: {},
+
+  userText: {
+    paddingHorizontal: 10,
+    color: colors.white[100],
+    fontSize: 20,
+  },
+
   weekControlContainer: {
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     borderRadius: 15,
     padding: 20,
-    marginBottom: 30,
   },
 
   weekText: {
@@ -92,5 +100,17 @@ export const styles = StyleSheet.create({
     width: 100,
     height: 100,
     resizeMode: "contain",
+  },
+
+  smokeButtonContainer: {
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 15,
+    padding: 50,
+    alignItems: "center",
+  },
+
+  smokeButtonText: {
+    fontSize: 25,
+    color: colors.white[100],
   },
 });

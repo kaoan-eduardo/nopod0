@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
   loginButtonText: {
     textAlign: "center",
     justifyContent: "center",
-    color: "#fff",
+    color: colors.white[100],
     fontWeight: "bold",
     fontSize: 20,
   },

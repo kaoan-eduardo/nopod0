@@ -1,8 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
-import { styles } from "../styles/breathingCircleStyles";
+import { Pressable, Text, View, Image } from "react-native";
+import { styles } from "../styles/greetingsStyles";
 import { colors } from "../styles/colors";
 
 export default function Greetings() {
@@ -14,7 +14,14 @@ export default function Greetings() {
       style={styles.container}
     >
       <View>
-        <Text>Parabéns, continue assim!</Text>
+        <Image
+          source={require("../assets/images/greetings.png")}
+          style={styles.image}
+        ></Image>
+      </View>
+      <View style={styles.congratulationsTextContainer}>
+        <Text style={styles.congratulationsTexuppercase}>PARABÉNS!!!</Text>
+        <Text style={styles.congratulationsTextlowercase}>continue assim!</Text>
       </View>
 
       <View>

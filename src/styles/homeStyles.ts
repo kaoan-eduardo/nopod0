@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
     width: 50,
     height: 50,
     resizeMode: "contain",
+    borderRadius: 50,
   },
 
   userTextContainer: {},
@@ -103,9 +104,10 @@ export const styles = StyleSheet.create({
   },
 
   smokeButtonContainer: {
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    marginTop: 50,
+    backgroundColor: colors.button[100],
     borderRadius: 15,
-    padding: 50,
+    padding: 20,
     alignItems: "center",
   },
 

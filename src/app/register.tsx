@@ -25,7 +25,7 @@ export default function Register() {
     try {
       await AsyncStorage.setItem("usuario", JSON.stringify(usuario));
       Alert.alert("Cadastro realizado com sucesso!");
-      router.push("./index");
+      router.push("./");
     } catch (error) {
       Alert.alert("Erro ao salvar os dados");
     }

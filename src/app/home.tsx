@@ -81,7 +81,7 @@ export default function Home() {
   };
 
   const toggleDaySelection = (day: keyof typeof selectedDays) => {
-    Vibration.vibrate();
+    Vibration.vibrate(50);
     setSelectedDays((prevState) => ({
       ...prevState,
       [day]: !prevState[day],
@@ -126,7 +126,6 @@ export default function Home() {
       setUltimaResistencia(dataHora);
       await AsyncStorage.setItem("ultimaResistencia", dataHora);
 
-      Vibration.vibrate(300);
       router.push("/breathingCircle");
     } catch (error) {
       console.log("Erro ao atualizar contagem ou data:", error);
